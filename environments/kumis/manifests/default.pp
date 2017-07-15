@@ -11,3 +11,5 @@ file { '/home/vagrant/my-projects-directory':
 }
 
 include mysql
+include php
+include tools
