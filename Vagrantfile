@@ -11,6 +11,11 @@ Vagrant.configure("2") do |config|
     puppet.module_path      = "modules"
   end
 
-  config.vm.network "private_network", ip: "192.168.33.10"
+  # Host:8080 corresponds to VM:80
+  config.vm.network "forwarded_port", guest: 80, host: 8080
+  
+  # Configure shared folders between host & VM
+  # www/ on host corresponds to /var/www/html on VM
+  config.vm.synced_folder "www/", "/var/www/html", :owner => "vagrant"
 
 end

@@ -6,6 +6,7 @@ exec { 'apt-update':
 # http://www.puppetcookbook.com/posts/set-global-exec-path.html
 Exec { path => [ "/bin/", "/sbin/" , "/usr/bin/", "/usr/sbin/", "/usr/local/bin", "/usr/local/sbin", "~/.composer/vendor/bin/" ] }
 
+include apache
 include composer
 include mysql
 include php
