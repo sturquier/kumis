@@ -1,0 +1,14 @@
+<VirtualHost *:80>
+
+	ServerAdmin turquiersimon@hotmail.fr
+	DocumentRoot /vagrant/webroot
+	
+	<Directory /vagrant/webroot>
+		DirectoryIndex index.php index.html
+		AllowOverride All
+		Order allow,deny
+		Allow from all
+	</Directory>
+
+	ErrorLog /var/log/apache2/error.log
+</VirtualHost>

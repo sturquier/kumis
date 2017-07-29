@@ -15,7 +15,6 @@ Vagrant.configure("2") do |config|
   config.vm.network "forwarded_port", guest: 80, host: 8080
   
   # Configure shared folders between host & VM
-  # www/ on host corresponds to /var/www/html on VM
-  config.vm.synced_folder "www/", "/var/www/html", :owner => "vagrant"
+  config.vm.synced_folder "webroot/", "/vagrant/webroot/", :owner => "www-data"
 
 end
