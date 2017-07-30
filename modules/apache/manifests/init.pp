@@ -11,6 +11,13 @@ class apache {
 		ensure 		=> installed,
 	}
 
+	# Delete default index.html in /var/www/html folder
+	exec { 'delete-index':
+		require 	=> Package['apache2'],
+		command     => 'sudo rm /var/www/html/index.html',
+		before 		=> File["/etc/apache2/sites-enabled/vagrant_webroot"],
+	}
+
 	# Create a symlink for rewrite module
 	file { "/etc/apache2/mods-enabled/rewrite.load":
 		require 	=> Package['apache2'],

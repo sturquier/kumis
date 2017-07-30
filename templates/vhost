@@ -1,10 +1,9 @@
 <VirtualHost *:80>
 
 	ServerAdmin turquiersimon@hotmail.fr
-	DocumentRoot /vagrant/webroot
+	DocumentRoot /var/www/html
 	
-	<Directory /vagrant/webroot>
-		DirectoryIndex index.php index.html
+	<Directory /var/www/html>
 		AllowOverride All
 		Order allow,deny
 		Allow from all
