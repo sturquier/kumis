@@ -18,18 +18,29 @@ class apache {
 		ensure 		=> link,
 	}
 
+ 	# Create a new sites-enabled directory, purging the old one
+ 	file { "/etc/apache2/sites-enabled":
+ 		require 	=> Package['apache2'],
+ 		recurse 	=> true,
+ 		purge 		=> true,
+ 		force 		=> true,
+ 		before  	=> File["/etc/apache2/sites-enabled/vagrant_webroot"],
+ 		ensure 		=> directory,
+ 	}
+
 	# Create default vhost conf
- 	file { "/etc/apache2/sites-available/webroot.conf":
- 		require 	=> File["/etc/apache2/mods-enabled/rewrite.load"],
+ 	file { "/etc/apache2/sites-available/vagrant_webroot":
+ 		require 	=> Package['apache2'],
  		source 		=> "/vagrant/templates/vhost",
  		ensure 		=> present,
  	}
  
- 	# Enable vhost conf
- 	exec { "a2ensite webroot":
- 		require 	=> File["/etc/apache2/sites-available/webroot.conf"],
- 		command 	=> "sudo a2ensite webroot",
- 	}
+ 	# Create a symlink to the vagrant_webroot directory
+ 	file { "/etc/apache2/sites-enabled/vagrant_webroot":
+    	require 	=> File["/etc/apache2/sites-available/vagrant_webroot"],
+    	target 		=> "/etc/apache2/sites-available/vagrant_webroot",
+    	ensure 		=> link,
+  }
  
   	# Make sure that apache is running. Reload if necessary
   	service { 'apache2':
@@ -37,7 +48,7 @@ class apache {
   		ensure      => running,
   		subscribe 	=> [
   			File["/etc/apache2/mods-enabled/rewrite.load"],
-  			File["/etc/apache2/sites-available/webroot.conf"]
+  			File["/etc/apache2/sites-available/vagrant_webroot"]
   		],
   	}
 }
