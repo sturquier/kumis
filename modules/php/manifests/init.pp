@@ -1,24 +1,26 @@
 class php {
 
 	$packages = [
-		# Required
-		'php5',
-		'php5-cli',
-		'libapache2-mod-php5',
-		'php5-mysql',
-
-		# Additionnal but really usefull
-		'php5-curl',
-		'php5-xdebug',
-		'php5-gd',
-		'php5-mcrypt',
-		'php5-dev',
-		'php-pear'
+		'php7.2',
+		'php-pear',
+		'php7.2-curl',
+		'php7.2-dev',
+		'php7.2-gd',
+		'php7.2-mbstring',
+		'php7.2-zip',
+		'php7.2-mysql',
+		'php7.2-xml'	
 	]
+
+	# Add PHP repository
+	exec { 'add-ondrej-repo':
+		require		=> Exec['apt-update'],
+		command		=> "add-apt-repository ppa:ondrej/php && apt-get update",
+	}
 
 	# Make sure that PHP is properly installed
 	package { $packages:
-		require 	=> Exec['apt-update'],
+		require 	=> Exec['add-ondrej-repo'],
 		ensure 		=> installed,
 	}
 }

@@ -1,7 +1,6 @@
 class tools {
 
 	$packages = [
-		'terminator',
 		'vim',
 		'git',
 		'unzip'
