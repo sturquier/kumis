@@ -3,10 +3,10 @@ LAMP made with Vagrant & Puppet
 
 ### Details
 
-##### Ubuntu 14.4-64
-* Apache/2.4.7 (Ubuntu)
-* PHP Version 5.5.9-1ubuntu4.21
-* MySQL Version 14.14
+##### Ubuntu 16.04
+* Apache/2.4.18 (Ubuntu)
+* PHP 7.2
+* MySQL 14.14
 
 ### Requirements
 * [VirtualBox](https://www.virtualbox.org/)
@@ -28,7 +28,6 @@ Create a file/directory in the `webroot` directory, save it and reload the web p
 
 ### Table of Contents
 
-* [Packages, services & tools included](#packages-services-tools-included)
 * [Commands](#commands)
   * [vagrant up](#vagrant-up)
   * [vagrant provision](#vagrant-provision)
@@ -36,29 +35,6 @@ Create a file/directory in the `webroot` directory, save it and reload the web p
   * [vagrant ssh](#vagrant-ssh)
   * [vagrant reload](#vagrant-reload)
   * [vagrant destroy](#vagrant-destroy)
-
-Packages, services & tools included
-===================================
-
-* apache2
-* apache2-utils
-* composer
-* mysql
-* mysql-server
-* php5
-* php5-cli
-* libapache2-mod-php5
-* php5-mysql
-* php5-curl
-* php5-xdebug
-* php5-gd
-* php5-mcrypt
-* php5-dev
-* php-pear
-* terminator
-* vim
-* git
-* unzip
 
 Commands
 ========
